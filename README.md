@@ -33,6 +33,7 @@
 | :- | -: |
 | Streaming Sound Wave | 继承自USoundWave的流式音波类，支持流式播放 |
 | Raw Data Stream Base64 | 流式的Base64编码的音频字符串，内容为本次传输的部分 |
+| Raw Data Bytes Stream | 流式的二进制音频数据，内容为本次传输的部分 |
 | Sound Wave  | 完成合成时的USoundWave资产，其余时候为空指针 |
 | Error Message  |  发生错误时的错误信息 |
 
