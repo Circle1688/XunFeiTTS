@@ -43,7 +43,7 @@ void UXunFeiTtsProxy::Activate()
 		
 		WebSocket->Send(SendMsg);
 		
-		this->OnStart.Broadcast(StreamingSoundWave,TEXT(""),{},nullptr,TEXT(""));
+		this->OnStart.Broadcast(StreamingSoundWave,TEXT(""),{},TEXT(""));
 	});
 
 	/*绑定收到回传数据的委托*/
@@ -62,7 +62,7 @@ void UXunFeiTtsProxy::Activate()
 		if (!bSuccess)
 		{
 			const FString ErrorMessage = FString::Printf(TEXT("ErrorMessage: %s\nErrorCode: %i"),*Error, ErrorCode);
-			this->OnError.Broadcast(StreamingSoundWave,TEXT(""),{},nullptr,ErrorMessage);
+			this->OnError.Broadcast(StreamingSoundWave,TEXT(""),{},ErrorMessage);
 		}
 		
 		/*将新的部分的数据放到末尾*/
@@ -73,30 +73,27 @@ void UXunFeiTtsProxy::Activate()
 		/*将新的原始数据放入流式音波对象的缓冲区末尾，注意讯飞语音合成的音频默认是16位，16000采样率，单声道*/
 		StreamingSoundWave->AppendAudioDataFromRAW(ByteArray,ERuntimeRAWAudioFormat::Int16,16000, 1);
 		
-		this->OnProgress.Broadcast(StreamingSoundWave, RawDataStream, ByteArray,nullptr,TEXT(""));
+		this->OnProgress.Broadcast(StreamingSoundWave, RawDataStream, ByteArray,TEXT(""));
 		
 		/*Status = 2时，即为最后一条数据*/
 		if (Status == 2)
 		{
 			TArray<uint8> BytesRawData = UHelper::Base64ToBytes(RawData);
-
-			/*从字节数组创建USoundWave资产*/
-			USoundWave* SoundWave = UHelper::CreateSoundFromBytes(BytesRawData);
 			
-			this->OnFinish.Broadcast(StreamingSoundWave, RawData,BytesRawData,SoundWave,TEXT(""));
+			this->OnFinish.Broadcast(StreamingSoundWave, RawData,BytesRawData,TEXT(""));
 		}
 	});
 
 	/*绑定连接错误的委托*/
 	WebSocket->OnConnectError().AddLambda([this](const FString& ErrorMessage) -> void
 	{
-		this->OnError.Broadcast(StreamingSoundWave,TEXT(""),{},nullptr,ErrorMessage);
+		this->OnError.Broadcast(StreamingSoundWave,TEXT(""),{},ErrorMessage);
 	});
 
 	/*绑定连接关闭的委托*/
 	WebSocket->OnClose().AddLambda([this](int32 StatusCode, const FString& Reason, bool bWasClean) -> void
 	{
-		this->OnClose.Broadcast(StreamingSoundWave, TEXT(""),{},nullptr,Reason);
+		this->OnClose.Broadcast(StreamingSoundWave, TEXT(""),{},Reason);
 	});
 
 	/*开始连接*/
