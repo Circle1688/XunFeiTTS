@@ -41,11 +41,6 @@ public:
 	*/
 	static TArray<uint8> Base64ToBytes(const FString& Base64);
 
-	/**
-	 * 由原始的字节数组创建USoundWave资产
-	 */
-	static USoundWave* CreateSoundFromBytes(const TArray<uint8>& InPCMData);
-
 private:
 	/**
 	* 生成SHA-256哈希，总是返回32字节
