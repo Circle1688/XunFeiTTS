@@ -34,10 +34,9 @@ struct FXunFeiKey
  * @param StreamingSoundWave 继承自USoundWave类的流式音波类，支持流式播放。基础使用方法：在On Progress后面连接一个Do Once节点，将On Finish连接至Do Once节点的Reset上，并在Do Once节点的Completed后连接Play Sound 2D（使用的声音为该StreamingSoundWave）播放流式声音。
  * @param RawDataStreamBase64 流式的Base64编码的音频字符串，内容为本次传输的部分
  * @param RawDataBytesStream 流式的二进制音频数据，内容为本次传输的部分
- * @param SoundWave 完成合成时的USoundWave资产，其余时候为空指针
  * @param ErrorMessage 发生错误时的错误信息
  */
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnTtsEvent, const USoundWave*, StreamingSoundWave, const FString&, RawDataStreamBase64, const TArray<uint8>&, RawDataBytesStream, const USoundWave*, SoundWave, const FString&, ErrorMessage);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnTtsEvent, const USoundWave*, StreamingSoundWave, const FString&, RawDataStreamBase64, const TArray<uint8>&, RawDataBytesStream, const FString&, ErrorMessage);
 
 /**
  * 
