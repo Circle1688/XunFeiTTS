@@ -136,22 +136,3 @@ TArray<uint8> UHelper::Base64ToBytes(const FString& Base64)
 	}
 	return ByteArray;
 }
-
-USoundWave* UHelper::CreateSoundFromBytes(const TArray<uint8>& InPCMData)
-{
-	uint32 WaveDataSize = InPCMData.Num();
-	
-	USoundWave* SoundAsset = NewObject<USoundWave>(USoundWave::StaticClass());
-	SoundAsset->InvalidateCompressedData();
-	int32 DurationDiv = 1 /* mono */ * 16 /* bit rate */ * 16000/*SampleRate*/;
-	double AudioDuration = DurationDiv ? ((double)WaveDataSize * 8.0f / (double)DurationDiv) : 0.f;
-	SoundAsset->Duration = (float)AudioDuration;
-	SoundAsset->SetSampleRate(16000);
-	SoundAsset->NumChannels = 1;
-	SoundAsset->RawPCMDataSize = WaveDataSize;
-	SoundAsset->SoundGroup = ESoundGroup::SOUNDGROUP_Default;
-	SoundAsset->RawPCMData = (uint8*)FMemory::Malloc(WaveDataSize);
-	FMemory::Memcpy(SoundAsset->RawPCMData, InPCMData.GetData(), WaveDataSize);
-
-	return SoundAsset;
-}
