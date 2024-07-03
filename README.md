@@ -6,7 +6,6 @@
 ## 联系信息
  - 作者: Circle_
  - B站: https://b23.tv/EzPeUhU
- - 微信: sylbb520520
 
 ## 支持版本
  - 5.0 - 5.2
