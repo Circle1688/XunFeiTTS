@@ -1,8 +1,6 @@
 ﻿/**
  * Author: Circle_
- * Website: www.peihongzhe.com
  * BiliBili: https://b23.tv/EzPeUhU
- * Wechat: sylbb520520
 */
 
 #pragma once
