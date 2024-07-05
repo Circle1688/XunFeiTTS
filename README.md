@@ -17,7 +17,7 @@
 
 ## 前置准备
  - 放入项目插件目录  {ProjectDir}/Plugins/
- - 需自行编译
+ - 需自行编译（后面将发布多版本，不用再编译）
  - 请勿与 Runtime Audio Importer 插件一同使用 https://www.unrealengine.com/marketplace/zh-CN/product/runtime-audio-importer
 
 ## 蓝图节点
