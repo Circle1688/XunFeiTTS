@@ -1,8 +1,6 @@
 ﻿/**
  * 作者: Circle_
- * 网址: www.peihongzhe.com
  * B站: https://b23.tv/EzPeUhU
- * 微信: sylbb520520
 */
 
 #include "XunFeiTtsProxy.h"
